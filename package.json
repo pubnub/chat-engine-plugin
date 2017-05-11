@@ -1,0 +1,13 @@
+{
+  "name": "ocf-plugin",
+  "version": "0.0.1",
+  "main": "dist/plugin.js",
+  "open-chat-framework": {
+    "namespace": "plugin"
+  },
+  "dependencies": {
+    "browserify": "^14.3.0",
+    "gulp": "^3.9.1",
+    "vinyl-source-stream": "^1.1.0"
+  }
+}
