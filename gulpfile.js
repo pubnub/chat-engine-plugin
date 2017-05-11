@@ -28,7 +28,7 @@ let compile = function () {
     })
     .bundle()
     .pipe(source(namespace + '.js'))
-    .pipe(gulp.dest('./dist/'));
+    .pipe(gulp.dest('./web/'));
 
     return true;
 
@@ -43,4 +43,4 @@ gulp.task('default', ['compile']);
 compile();
 
 console.log(chalk.green('Open Chat Framework Plugin Compilation Complete!'));
-console.log(chalk.yellow('Output: ') + './dist/' + namespace + '.js');
+console.log(chalk.yellow('Output: ') + './web/' + namespace + '.js');

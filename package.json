@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "main": "dist/plugin.js",
   "open-chat-framework": {
-    "namespace": "plugin"
+    "namespace": "append"
   },
   "dependencies": {
     "browserify": "^14.3.0",
