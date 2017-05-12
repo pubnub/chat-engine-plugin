@@ -19,6 +19,12 @@ if(!namespace) {
     return console.log(chalk.red('Error! Please define a "namespace" property within the "open-chat-framework" object within package.json.'));
 }
 
+let main = packagejson['main'];
+
+if(!main) {
+    return console.log(chald.red('Please define a "main" property within your package.json.'));
+}
+
 // task
 let compile = function () {
     
