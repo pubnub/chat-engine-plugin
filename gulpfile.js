@@ -4,8 +4,9 @@ const gulp = require('gulp');
 const browserify = require('browserify');
 const source = require('vinyl-source-stream');
 const chalk = require('chalk');
+const del = require('del');
 
-let packagejson = require('./package.json');
+let packagejson = require(process.cwd() + '/package.json');
 
 let ocfVar = packagejson['open-chat-framework'];
 
@@ -19,23 +20,23 @@ if(!namespace) {
     return console.log(chalk.red('Error! Please define a "namespace" property within the "open-chat-framework" object within package.json.'));
 }
 
-let main = packagejson['main'];
-
-if(!main) {
-    return console.log(chald.red('Please define a "main" property within your package.json.'));
-}
-
 // task
 let compile = function () {
     
+    gulp.src(__dirname + '/wrap.js')
+        .pipe(gulp.dest('./.tmp/'));
+
     browserify({
-        entries: ['wrap.js'],
+        entries: ['./.tmp/wrap.js'],
         debug: true
     })
     .bundle()
     .pipe(source(namespace + '.js'))
     .pipe(gulp.dest('./web/'));
 
+    del(['./.tmp/']).then(paths => {
+        // console.log('Deleted files and folders:\n', paths.join('\n'));
+    });
     return true;
 
 };
