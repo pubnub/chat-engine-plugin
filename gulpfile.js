@@ -4,7 +4,7 @@ const gulp = require('gulp');
 const browserify = require('browserify');
 const source = require('vinyl-source-stream');
 const chalk = require('chalk');
-const del = require('del');
+const rimraf = require('rimraf');
 
 let packagejson = require(process.cwd() + '/package.json');
 
@@ -20,39 +20,33 @@ if(!namespace) {
     return console.log(chalk.red('Error! Please define a "namespace" property within the "open-chat-framework" object within package.json.'));
 }
 
-// task
-let compile = function () {
+gulp.task('copy', function() {
 
-    del(['./.tmp/']).then(paths => {
+    return gulp.src(__dirname + '/wrap.js')
+        .pipe(gulp.dest('./.tmp/'));
         
-        gulp.src(__dirname + '/wrap.js')
-            .pipe(gulp.dest('./.tmp/'));
+})
 
-        browserify({
-            entries: ['./.tmp/wrap.js'],
-            debug: true
-        })
-        .bundle()
-        .pipe(source(namespace + '.js'))
-        .pipe(gulp.dest('./web/'));
+gulp.task('compile', function () {
 
-        del(['./.tmp/']).then(paths => {
-            // console.log('Deleted files and folders:\n', paths.join('\n'));
-        });
+    return browserify({
+        entries: ['./.tmp/wrap.js'],
+        debug: true
+    })
+    .bundle()
+    .pipe(source(namespace + '.js'))
+    .pipe(gulp.dest('./web/'))
+    .on('end', () => {
+        return rimraf('./.tmp', () => {});
+    })
 
-    });
+});
 
-    return true;
-
-};
-
-gulp.task('compile', compile);
-
-gulp.task('default', ['compile']);
+gulp.task('default', ['copy', 'compile']);
 
 // gulp.watch('./src/*', ['compile']);
 
-compile();
+gulp.start('default')
 
 console.log(chalk.green('Open Chat Framework Plugin Compilation Complete!'));
 console.log(chalk.yellow('Output: ') + './web/' + namespace + '.js');
