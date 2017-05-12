@@ -22,21 +22,26 @@ if(!namespace) {
 
 // task
 let compile = function () {
-    
-    gulp.src(__dirname + '/wrap.js')
-        .pipe(gulp.dest('./.tmp/'));
-
-    browserify({
-        entries: ['./.tmp/wrap.js'],
-        debug: true
-    })
-    .bundle()
-    .pipe(source(namespace + '.js'))
-    .pipe(gulp.dest('./web/'));
 
     del(['./.tmp/']).then(paths => {
-        // console.log('Deleted files and folders:\n', paths.join('\n'));
+        
+        gulp.src(__dirname + '/wrap.js')
+            .pipe(gulp.dest('./.tmp/'));
+
+        browserify({
+            entries: ['./.tmp/wrap.js'],
+            debug: true
+        })
+        .bundle()
+        .pipe(source(namespace + '.js'))
+        .pipe(gulp.dest('./web/'));
+
+        del(['./.tmp/']).then(paths => {
+            // console.log('Deleted files and folders:\n', paths.join('\n'));
+        });
+
     });
+
     return true;
 
 };
