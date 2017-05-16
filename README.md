@@ -51,6 +51,11 @@ The plugin entry file must be a file called ```plugin.js``` in the root director
 From this file you can require any other file as normal, but the entry must be
 plugin.js
 
+## Run ocf-plugin
+
+Then, just run ```ocf-plugin``` from the command line. This will bundle your
+```plugin.js``` file and it's dependencies so it can be used on the web.
+
 ## Plugin Anatomy
 
 Every plugin must export a function. The first parameter of the function are
@@ -93,6 +98,7 @@ The sub properties are the events that will trigger the transformation. For
 example, the plugin below will be executed when a ```message``` event is sent.
 
 ```js
+// water-to-coffee.js
 module.exports = (config) => {
 
     return {
@@ -109,6 +115,26 @@ module.exports = (config) => {
     }
 }
 ```
+
+```
+let myPlugin = require('plugin.js');
+let someChatroom = new OCF.Chat('new-channel');
+someChatroom.plugin(myPlugin(config));
+```
+
+On web, you would include the plugin with a ```<script>``` tag like:
+
+```html
+<script src="/plugin.js"></script>
+```
+
+And the plugin will be available under ```OpenChatFramework.plugin[namespace]```.
+The namespace is defined in package.json.
+
+```js
+let someChatroom = new OCF.Chat('new-channel');
+someChatroom.plugin(OpenChatFramework.plugin.myPlugin(config));
+````
 
 To trigger the plugin above:
 
