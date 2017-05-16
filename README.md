@@ -58,15 +58,13 @@ For  example, the plugin above will be executed when a ```message```
 event is sent from the client.
 
 ```js
-someChat.send('message', {text: 'This triggers the ```send```` method before it's
-published over the wire.'});
+someChat.send('message', {text: 'This triggers the ```send```` method before it\'s published over the wire.'});
 ```
 
 ```js
 someChat.on('message', (payload) => {
 
-    // payload has been modified by the ```broadcast``` method before this was
-    called
+    // payload has been modified by the ```broadcast``` method before this was called
     console.log(payload.receiveTime);
 
 });
@@ -106,7 +104,7 @@ method called ```newMethod()```. You can call the method like ```someChat.newMet
 It's super easy to use plugins in NodeJs. Just include the file like any other
 dependency and attach it to your OCF objects.
 
-```
+```js
 // include the plugin from the remote file
 const myPlugin = require('plugin.js');
 
@@ -151,10 +149,10 @@ both web and nodeJS. It uses browserify to compile assets.
 
 It's main features are:
 
-- name spacing plugins to avoid collisions
-- preventing global scope leak in browser
-- consistent API for integration on web and node
-- singular tests for web and node
+- Name spacing plugins to avoid collisions
+- Preventing global scope leak in browser
+- Consistent API for integration on web and node
+- Singular tests for web and node
 
 ## Setup
 
@@ -187,3 +185,8 @@ global variables. Be careful to avoid collisions with other OCF plugins!
 
 Then, just run ```ocf-plugin``` from the command line. This will bundle your
 ```plugin.js``` file and it's dependencies so it can be used on the web.
+
+## Tests
+
+Tests are defined in ```test.js``` and should use the ```mocha``` test package
+with ```chai``` for consistency.
