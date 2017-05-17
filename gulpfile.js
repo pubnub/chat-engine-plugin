@@ -12,7 +12,7 @@ gulp.task('copy', function() {
 
     return gulp.src(__dirname + '/wrap.js')
         .pipe(gulp.dest('./.tmp/'));
-        
+
 })
 
 gulp.task('compile', function () {
@@ -23,7 +23,7 @@ gulp.task('compile', function () {
     })
     .bundle()
     .pipe(source(packagejson.name + '.js'))
-    .pipe(gulp.dest('./web/'))
+    .pipe(gulp.dest('./dist/'))
     .on('end', () => {
         return rimraf('./.tmp', () => {});
     })
@@ -37,4 +37,4 @@ gulp.task('default', ['copy', 'compile']);
 gulp.start('default')
 
 console.log(chalk.green('Open Chat Framework Plugin Compilation Complete!'));
-console.log(chalk.yellow('Output: ') + './web/' + packagejson.name + '.js');
+console.log(chalk.yellow('Output: ') + './dist/' + packagejson.name + '.js');
