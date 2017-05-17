@@ -11,7 +11,8 @@
     "commander": "^2.9.0",
     "gulp": "^3.9.1",
     "rimraf": "^2.6.1",
-    "vinyl-source-stream": "^1.1.0"
+    "vinyl-source-stream": "^1.1.0",
+    "ocf": "^0.0.2"
   },
   "bin": {
     "ocf-plugin": "./gulpfile.js"
