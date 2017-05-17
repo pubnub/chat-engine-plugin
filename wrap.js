@@ -1,6 +1,6 @@
 (function() {
 
-    const namespace = require('../package.json')['open-chat-framework']['namespace'];
-    window.OpenChatFramework.plugin[namespace] = require('../plugin.js');
+    const package = require('../package.json');
+    window.OpenChatFramework.plugin[package.name] = require('../plugin.js');
 
 })();

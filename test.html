@@ -39,7 +39,7 @@
     </div>
     
     <script src="../open-chat-framework/web/ocf.js" type="text/javascript"></script>
-    <script src="./web/append.js" type="text/javascript"></script>
+    <script src="./web/ocf-plugin.js" type="text/javascript"></script>
     
     <script type="text/javascript">
 
@@ -64,9 +64,7 @@
         signedOnTime: now
     });
 
-    console.log(OpenChatFramework.plugin);
-
-    OCF.globalChat.plugin(OpenChatFramework.plugin.append({
+    OCF.globalChat.plugin(OpenChatFramework.plugin['ocf-plugin']({
         send: 'send',
         broadcast: 'broadcast'
     }));
