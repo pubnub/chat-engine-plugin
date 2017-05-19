@@ -1,4 +1,5 @@
 {
+  "author": "Ian Jennings",
   "name": "ocf-plugin",
   "version": "0.0.2",
   "main": "src/plugin.js",
