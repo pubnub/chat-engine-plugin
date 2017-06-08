@@ -1,7 +1,7 @@
 {
   "author": "Ian Jennings",
   "name": "chat-engine-plugin",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "main": "src/plugin.js",
   "dependencies": {
     "browserify": "^14.3.0",
@@ -10,7 +10,7 @@
     "gulp": "^3.9.1",
     "rimraf": "^2.6.1",
     "vinyl-source-stream": "^1.1.0",
-    "chat-engine": "^0.0.4"
+    "chat-engine": "^0.2.0"
   },
   "bin": {
     "chat-engine-plugin": "./gulpfile.js"
