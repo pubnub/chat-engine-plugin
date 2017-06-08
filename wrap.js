@@ -1,6 +1,6 @@
 (function() {
 
     const package = require('../package.json');
-    window.OpenChatFramework.plugin[package.name] = require('../src/plugin.js');
+    window.ChatEngineCore.plugin[package.name] = require('../src/plugin.js');
 
 })();
