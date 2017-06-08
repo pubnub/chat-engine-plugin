@@ -1,18 +1,18 @@
 # Open Chat Framework Plugin Assets
 
-This repository serves as the docs for Open Chat Framework Plugins.
+This repository serves as the docs for PubNub Chat Engine Plugins.
 
 ## Building your first plugin
 
 ### Plugin.js
 
-The plugin entry file must be a file called ```plugin.js``` in the root directory. 
+The plugin entry file must be a file called ```plugin.js``` in the root directory.
 From this file you can require any other file as normal, but the entry must be
 plugin.js
 
 ### Plugin Anatomy
 
-Every plugin must return an object containing the property ```middleware``` 
+Every plugin must return an object containing the property ```middleware```
 or ```extends```.
 
 #### Middleware
@@ -21,11 +21,11 @@ Middleware allows you to transform payloads as they travel through the system.
 They are executed in order they are assigned.
 
 The only valid properties of the ```middleware``` object are ```send``` and
-```broadcast```. 
+```broadcast```.
 
 * ```send``` is executed before the payload is sent over the
 network to the rest of the connected clients.
-* ```broadcast``` is executed when the client receives a payload from another 
+* ```broadcast``` is executed when the client receives a payload from another
 client.
 
 ```js
@@ -33,13 +33,13 @@ module.exports = (config) => {
 
     return {
         middleware: {
-            send: 
+            send:
                 message: (payload, next) => {
                     payload.sentTime = new Date();
                     next(err, payload);
                 }
             },
-            broadcast: 
+            broadcast:
                 message: (payload, next) -> {
                     payload.receiveTime = new Date();
                     next(err, payload);
@@ -51,10 +51,10 @@ module.exports = (config) => {
 }
 ```
 
-The sub properties under ```send``` and ```broadcast``` are the events 
-that will trigger the transformation. 
+The sub properties under ```send``` and ```broadcast``` are the events
+that will trigger the transformation.
 
-For  example, the plugin above will be executed when a ```message``` 
+For  example, the plugin above will be executed when a ```message```
 event is sent from the client.
 
 ```js
@@ -117,7 +117,7 @@ someChatroom.plugin(myPlugin(config));
 
 #### Web
 
-You'll need the ```ocf-plugin``` tool described in the next section to 
+You'll need the ```chat-engine-plugin``` tool described in the next section to
 build the package for web.
 
 Once you build the pckage you would include the plugin with a ```<script>``` tag like:
@@ -126,7 +126,7 @@ Once you build the pckage you would include the plugin with a ```<script>``` tag
 <script src="/web/plugin.js"></script>
 ```
 
-And the plugin will be available under ```OpenChatFramework.plugin[namespace]```.
+And the plugin will be available under ```ChatEngineCore.plugin[namespace]```.
 The namespace is defined in package.json and you can learn more about it in the
 next section.
 
@@ -135,7 +135,7 @@ Node version.
 
 ```js
 let someChatroom = new OCF.Chat('new-channel');
-someChatroom.plugin(OpenChatFramework.plugin.myPlugin(config));
+someChatroom.plugin(ChatEngineCore.plugin.myPlugin(config));
 ````
 
 ## Open Chat Framework Plugin Tool
@@ -144,7 +144,7 @@ This is a build tool for Open Chat Framework plugins. Because OCF works
 on the front and back end, the plugin system requires a standardized method
 for building for web.
 
-This build process assures us that the plugin can be used identically on 
+This build process assures us that the plugin can be used identically on
 both web and nodeJS. It uses browserify to compile assets.
 
 It's main features are:
@@ -159,31 +159,20 @@ It's main features are:
 Install the tool globally.
 
 ```sh
-npm install ocf-plugin -g
-```
-
-## Namespace
-
-Define a namespace in package.json in an object called "open-chat-framework".
-
-```json
-"main": "plugin.js",
-"open-chat-framework": {
-    "namespace": "emoji"
-},
+npm install chat-engine-plugin -g
 ```
 
 When used in a browser, this will provide your plugin as a property of the
-global ```OpenChatFramework.plugin``` property. 
+global ```ChatEngineCore.plugin``` property.
 
-```OpenChatFramework.plugin.emoji```.
+```ChatEngineCore.plugin.emoji```.
 
-This helps to avoid collisions with 
+This helps to avoid collisions with
 global variables. Be careful to avoid collisions with other OCF plugins!
 
-## Run ocf-plugin
+## Run chat-engine-plugin
 
-Then, just run ```ocf-plugin``` from the command line. This will bundle your
+Then, just run ```chat-engine-plugin``` from the command line. This will bundle your
 ```plugin.js``` file and it's dependencies so it can be used on the web.
 
 ## Tests
