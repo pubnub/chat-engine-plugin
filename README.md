@@ -1,6 +1,6 @@
 # Open Chat Framework Plugin Assets
 
-This repository serves as the docs for PubNub Chat Engine Plugins.
+This repository serves as the docs for PubNub ChatEngine Plugins.
 
 ## Building your first plugin
 
