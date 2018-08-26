@@ -36,5 +36,5 @@ gulp.task('default', ['copy', 'compile']);
 
 gulp.start('default')
 
-console.log(chalk.green('Open Chat Framework Plugin Compilation Complete!'));
+console.log(chalk.green('ChatEngine Plugin Compilation Complete!'));
 console.log(chalk.yellow('Output: ') + './dist/' + packagejson.name + '.js');

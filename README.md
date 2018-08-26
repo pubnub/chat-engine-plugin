@@ -1,4 +1,4 @@
-# Open Chat Framework Plugin Assets
+# ChatEngine Plugin Assets
 
 This repository serves as the docs for PubNub ChatEngine Plugins.
 
@@ -71,8 +71,8 @@ someChat.on('message', (payload) => {
 
 #### Extends
 
-You can also extend OCF objects and add new methods to them. For example,
-this plugin adds a method called ```newMethod()``` to the ```OCF.Chat``` object.
+You can also extend ChatEngine objects and add new methods to them. For example,
+this plugin adds a method called ```newMethod()``` to the ```ChatEngine.Chat``` object.
 
 ```js
 module.exports - {
@@ -94,7 +94,7 @@ module.exports - {
 }
 ```
 
-When the plugin is installed, every instance of ```OCF.Chat``` will have a new
+When the plugin is installed, every instance of ```ChatEngine.Chat``` will have a new
 method called ```newMethod()```. You can call the method like ```someChat.newMethod()```.
 
 ### Using Plugins
@@ -102,14 +102,14 @@ method called ```newMethod()```. You can call the method like ```someChat.newMet
 #### Node
 
 It's super easy to use plugins in NodeJs. Just include the file like any other
-dependency and attach it to your OCF objects.
+dependency and attach it to your ChatEngine objects.
 
 ```js
 // include the plugin from the remote file
 const myPlugin = require('plugin.js');
 
 // create a new chatroom
-let someChatroom = new OCF.Chat('new-channel');
+let someChatroom = new ChatEngine.Chat('new-channel');
 
 // attach the plugin to the new chatroom
 someChatroom.plugin(myPlugin(config));
@@ -130,17 +130,17 @@ And the plugin will be available under ```ChatEngineCore.plugin[namespace]```.
 The namespace is defined in package.json and you can learn more about it in the
 next section.
 
-Once the plugi is available, you can attach it to OCF objects like we do in the
+Once the plugi is available, you can attach it to ChatEngine objects like we do in the
 Node version.
 
 ```js
-let someChatroom = new OCF.Chat('new-channel');
+let someChatroom = new ChatEngine.Chat('new-channel');
 someChatroom.plugin(ChatEngineCore.plugin.myPlugin(config));
 ````
 
-## Open Chat Framework Plugin Tool
+## ChatEngine Plugin Tool
 
-This is a build tool for Open Chat Framework plugins. Because OCF works
+This is a build tool for ChatEngine plugins. Because ChatEngine works
 on the front and back end, the plugin system requires a standardized method
 for building for web.
 
@@ -168,7 +168,7 @@ global ```ChatEngineCore.plugin``` property.
 ```ChatEngineCore.plugin.emoji```.
 
 This helps to avoid collisions with
-global variables. Be careful to avoid collisions with other OCF plugins!
+global variables. Be careful to avoid collisions with other ChatEngine plugins!
 
 ## Run chat-engine-plugin
 
