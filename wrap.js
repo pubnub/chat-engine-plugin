@@ -1,6 +1,6 @@
 (function() {
 
-    const package = require('../package.json');
-    window.ChatEngineCore.plugin[package.name] = require('../src/plugin.js');
+    const pkg = require('../package.json');
+    window.ChatEngineCore.plugin[pkg.name] = require('../src/plugin.js');
 
 })();
