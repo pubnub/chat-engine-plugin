@@ -179,3 +179,7 @@ Then, just run ```chat-engine-plugin``` from the command line. This will bundle 
 
 Tests are defined in ```test.js``` and should use the ```mocha``` test package
 with ```chai``` for consistency.
+
+## Support
+
+- If you **need help**, have a **general question** a **feature request** or to file a **bug**, contact <support@pubnub.com>
