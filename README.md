@@ -1,6 +1,6 @@
 This repository is a part of the [ChatEngine Framework](https://github.com/pubnub/chat-engine).
 For more information on building chat applications with PubNub, see our
-[Chat Resource Center](http://www.pubnub.com/developers/chat-resource-center/).
+[Chat Resource Center](https://www.pubnub.com/developers/chat-resource-center/).
 
 # ChatEngine Plugin Assets
 
@@ -11,8 +11,8 @@ This repository serves as the docs for PubNub ChatEngine Plugins.
 ### Plugin.js
 
 The plugin entry file must be a file called ```plugin.js``` in the root directory.
-From this file you can require any other file as normal, but the entry must be
-plugin.js
+From this file, you can require any other file as normal but the entry must be
+```plugin.js```
 
 ### Plugin Anatomy
 
@@ -22,7 +22,7 @@ or ```extends```.
 #### Middleware
 
 Middleware allows you to transform payloads as they travel through the system.
-They are executed in order they are assigned.
+They are executed in the order they are assigned.
 
 The only valid properties of the ```middleware``` object are ```send``` and
 ```broadcast```.
@@ -55,14 +55,14 @@ module.exports = (config) => {
 }
 ```
 
-The sub properties under ```send``` and ```broadcast``` are the events
+The sub-properties under ```send``` and ```broadcast``` are the events
 that will trigger the transformation.
 
-For  example, the plugin above will be executed when a ```message```
+For example, the plugin above will be executed when a ```message```
 event is sent from the client.
 
 ```js
-someChat.send('message', {text: 'This triggers the ```send```` method before it\'s published over the wire.'});
+someChat.send('message', {text: 'This triggers the ```send``` method before it\'s published over the wire.'});
 ```
 
 ```js
@@ -123,7 +123,7 @@ someChatroom.plugin(myPlugin(config));
 #### Web
 
 You'll need the ```chat-engine-plugin``` tool described in the next section to
-build the package for web.
+build the package for the web.
 
 Once you build the pckage you would include the plugin with a ```<script>``` tag like:
 
@@ -135,26 +135,26 @@ And the plugin will be available under ```ChatEngineCore.plugin[namespace]```.
 The namespace is defined in package.json and you can learn more about it in the
 next section.
 
-Once the plugi is available, you can attach it to ChatEngine objects like we do in the
+Once the plugin is available, you can attach it to ChatEngine objects as we do in the
 Node version.
 
 ```js
 let someChatroom = new ChatEngine.Chat('new-channel');
 someChatroom.plugin(ChatEngineCore.plugin.myPlugin(config));
-````
+```
 
 ## ChatEngine Plugin Tool
 
 This is a build tool for ChatEngine plugins. Because ChatEngine works
 on the front and back end, the plugin system requires a standardized method
-for building for web.
+for building for the web.
 
 This build process assures us that the plugin can be used identically on
 both web and nodeJS. It uses browserify to compile assets.
 
 It's main features are:
 
-- Name spacing plugins to avoid collisions
+- Namespacing plugins to avoid collisions
 - Preventing global scope leak in browser
 - Consistent API for integration on web and node
 - Singular tests for web and node
