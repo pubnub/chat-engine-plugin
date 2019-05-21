@@ -62,7 +62,9 @@ For example, the plugin above will be executed when a ```message```
 event is sent from the client.
 
 ```js
-someChat.send('message', {text: 'This triggers the ```send``` method before it\'s published over the wire.'});
+someChat.send('message', {
+    text: 'This triggers the ```send``` method before it\'s published over the wire.'
+});
 ```
 
 ```js
@@ -80,7 +82,7 @@ You can also extend ChatEngine objects and add new methods to them. For example,
 this plugin adds a method called ```newMethod()``` to the ```ChatEngine.Chat``` object.
 
 ```js
-module.exports - {
+module.exports = {
     return {
         extends: {
             Chat: {
