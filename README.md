@@ -72,6 +72,7 @@ someChat.on('message', (payload) => {
     console.log(payload.receiveTime);
 
 });
+```
 
 #### Extends
 
